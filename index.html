@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Google</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="https://www.google.com/favicon.ico"
+    />
+  </head>
+  <body>
+    <div class="mainDiv">
+      <div>
+        <div class="headerLeftAligned">
+          <a class="link" href="https://tlifschitz.com">About</a>
+        </div>
+        <div class="headerRightAligned">
+          <a class="link" href="image_search.html">Image Search</a>
+          <a class="link" href="advanced_search.html">Advanced Search</a>
+        </div>
+      </div>
+      <div class="googleLogoDivParent">
+        <div class="googleLogoDiv">
+          <img
+            alt="Google"
+            height="92"
+            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+            width="272"
+          />
+          <span class="googleImagesText">Tobi's Frontend</span>
+        </div>
+      </div>
+      <br />
+      <form action="https://www.google.com/search" method="GET" role="search">
+        <div>
+          <div class="roundBox">
+            <div class="magIconDiv">
+              <span class="magIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  ></path>
+                </svg>
+              </span>
+            </div>
+            <div class="textInputDiv">
+              <div class="spacer"></div>
+              <input
+                class="textInput"
+                name="q"
+                type="text"
+                autocomplete="off"
+                autocorrect="off"
+                autofocus=""
+                spellcheck="false"
+                title="Search"
+                value=""
+              />
+            </div>
+          </div>
+          <div>
+            <center>
+              <input
+                class="buttons"
+                value="Google Search"
+                name="btnK"
+                role="button"
+                type="submit"
+              />
+              <input
+                class="buttons"
+                value="I'm Feeling Lucky"
+                name="btnI"
+                role="button"
+                type="submit"
+              />
+            </center>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
