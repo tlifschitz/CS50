@@ -91,13 +91,6 @@ a.link:hover {
   max-height: 92px;
   position: relative;
 }
-.googleLogo {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-  width: auto;
-}
 
 .advancedSearchText {
   color: #d93025;
@@ -226,7 +219,7 @@ div.inputElem {
   min-width: 167px;
   min-height: 41px;
   vertical-align: middle;
-  width: 50%;
+  width: 60%;
 }
 
 div.inputElem input[type="text"] {
