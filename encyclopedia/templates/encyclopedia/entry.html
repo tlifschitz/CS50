@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ entry_name }}</h1>
-
     <p>
-        {{ entry }}
+        {{ entry | safe}}
     </p>
 
+    <a href="/edit/{{ entry_name }}">Edit</a>
+    
 {% endblock %}

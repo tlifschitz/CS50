@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if subtitle %} 
+        Encyclopedia | {{ subtitle }}
+    {% else %}
+        Encyclopedia 
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+{% if error_msg %}
+    <div>
+        <h2> {{ error_msg }} </h2>
+    </div>
+{% endif %}
+{% if heading %}
+    <div>
+        <h1> {{ heading }} </h1>
+    </div>
+{% endif %}
+    <div>
+        <form action="{% url view_name %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}
