@@ -38,7 +38,7 @@ def add(request):
             entry_name = form.cleaned_data["entry_name"]
             content = form.cleaned_data["content"]
             util.save_entry(entry_name,content)
-            return redirect(f'/{entry_name}')
+            return redirect(f'wiki/{entry_name}')
         else:
             # If the form is invalid, re-render the page with existing information.
             return render(request, "encyclopedia/add.html", {
