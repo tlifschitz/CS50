@@ -62,11 +62,21 @@ def add(request):
         if form.is_valid():   
             entry_name = form.cleaned_data["entry_name"]
             content = form.cleaned_data["content"]
-            util.save_entry(entry_name,content)
-            return redirect(f'wiki/{entry_name}')
+
+            stored_name = [name for name in util.list_entries() if name.lower() == entry_name.lower()]
+                
+            if len(stored_name) == 0:
+                util.save_entry(entry_name, content)
+                return redirect(f'wiki/{entry_name}')
+            else:
+                return render(request, "encyclopedia/add.html", {
+                    "error_msg" : f"Page {stored_name[0]} already exists",
+                    "form": form
+                })
         else:
             # If the form is invalid, re-render the page with existing information.
             return render(request, "encyclopedia/add.html", {
+                "error_msg" : f"Form is invalid",
                 "form": form
             })
 

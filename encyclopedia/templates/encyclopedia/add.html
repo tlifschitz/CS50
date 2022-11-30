@@ -5,9 +5,16 @@
 {% endblock %}
 
 {% block body %}
-    <form action="{% url 'add' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit">
-    </form>
+{% if error_msg %}
+    <div>
+        <h> {{ error_msg }} </h>
+    </div>
+{% endif %}
+    <div>
+        <form action="{% url 'add' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit">
+        </form>
+    </div>
 {% endblock %}
