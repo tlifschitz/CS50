@@ -1,3 +1,4 @@
+<!-- prettier-ignore -->
 {% extends "encyclopedia/layout.html" %}
 
 {% block title %}
@@ -5,10 +6,8 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Entry Name</h1>
-    <input> </input>
-
-    <h1>Content</h1>
-    <textarea></textarea>
-
+<form action="{% url 'add' %}" method="post">
+  {% csrf_token %} {{ form }}
+  <input type="submit" />
+</form>
 {% endblock %}

@@ -1,8 +1,13 @@
+from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from . import util
 import random
+
+class EntryForm(forms.Form):
+    entry_name = forms.CharField(label="Entry Name")
+    content = forms.CharField(label="Content", widget=forms.Textarea)
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -23,7 +28,22 @@ def entry(request, entry_name):
         })
 
 def add(request):
-    return render(request, "encyclopedia/add.html")
+    if request.method == "GET":
+        return render(request, "encyclopedia/add.html", {
+            "form": EntryForm()
+        })
+    elif request.method == "POST":
+        form = EntryForm(request.POST)
+        if form.is_valid():   
+            entry_name = form.cleaned_data["entry_name"]
+            content = form.cleaned_data["content"]
+            util.save_entry(entry_name,content)
+            return redirect(f'/{entry_name}')
+        else:
+            # If the form is invalid, re-render the page with existing information.
+            return render(request, "encyclopedia/add.html", {
+                "form": form
+            })
 
 def rand_entry(request):
     if request.method == "GET":
