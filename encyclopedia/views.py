@@ -10,8 +10,33 @@ class EntryForm(forms.Form):
     content = forms.CharField(label="Content", widget=forms.Textarea)
 
 def index(request):
-    return render(request, "encyclopedia/index.html", {
-        "entries": util.list_entries()
+    key = request.GET.get('q')
+
+    if key is None:
+        return render(request, "encyclopedia/index.html", {
+            "title_suffix" : "",
+            "heading": "All Pages",
+            "entries": util.list_entries()
+        })
+    else:
+        return redirect(reverse(search, args=[key]))
+
+def search(request, key):
+    entries = util.list_entries()
+
+    matches = [entry_name for entry_name in entries if key.lower() in entry_name.lower()]
+
+    if len(matches) == 0:
+        return render(request, "encyclopedia/entry-not-found.html", {
+            "entry_name": key
+        })
+    if len(matches) == 1:
+        return redirect(reverse(entry, args=[matches[0]]))
+    else:
+        return render(request, "encyclopedia/index.html", {
+        "title_suffix" : " Search",
+        "heading": "Search Results",
+        "entries": matches
     })
 
 def entry(request, entry_name):
