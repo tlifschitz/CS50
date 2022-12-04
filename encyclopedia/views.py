@@ -21,7 +21,10 @@ def index(request):
     else:
         return redirect(reverse(search, args=[key]))
 
-def search(request, key):
+def search(request, key=None):
+    if key is None:
+        return redirect(reverse(index))
+
     entries = util.list_entries()
 
     matches = [entry_name for entry_name in entries if key.lower() in entry_name.lower()]
@@ -42,6 +45,9 @@ def search(request, key):
 import markdown2
 
 def entry(request, entry_name=None):
+    if entry_name is None:
+        return redirect(reverse(index))
+
     content = util.get_entry(entry_name)
 
     if content is not None:
@@ -57,7 +63,7 @@ def entry(request, entry_name=None):
 
 def edit(request, entry_name=None):
     if request.method == "GET":
-        if not entry_name:
+        if entry_name is None:
             return redirect(reverse(index))
 
         content = util.get_entry(entry_name)
